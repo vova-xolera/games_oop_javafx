@@ -74,20 +74,14 @@ public class Logic {
         for (int temp = 0; temp < table.length; temp++){
             int cellCount = 0;
             int rowCount = 0;
-            if (table[temp][0] == 1) {
                 for (int index = 0; index < table.length; index++) {
                     if (table[temp][index] == 1) {
                         cellCount++;
                     }
-                }
-            }
-            if (table[0][temp] == 1) {
-                for (int index = 0; index < table.length; index++) {
                     if (table[index][temp] == 1) {
                         rowCount++;
                     }
                 }
-            }
             if(cellCount == 5 || rowCount == 5) {
                 result = true;
                 break;

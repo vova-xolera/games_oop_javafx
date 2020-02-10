@@ -13,6 +13,14 @@ public enum Cell {
     public final int x;
     public final int y;
 
+    public static Cell findBy(int X, int Y) {
+        Cell cell = Cell.A1;
+        for (Cell tempCell : Cell.values()) {
+            if (tempCell.x == (X) && tempCell.y == (Y)) cell = tempCell;
+        }
+        return cell;
+    }
+
     Cell(int x, int y) {
         this.x = x;
         this.y = y;

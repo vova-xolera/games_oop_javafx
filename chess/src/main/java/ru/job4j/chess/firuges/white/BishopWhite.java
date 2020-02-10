@@ -23,11 +23,28 @@ public class BishopWhite implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] { dest };
+        if (!isDiagonal(source, dest)) {
+            throw new IllegalStateException(
+                    String.format("Could not way by diagonal from %s to %s", source, dest)
+            );
+        }
+        int size = Math.abs(source.x - dest.x) + 1;
+        Cell[] steps = new Cell[size];
+        int deltaX = (dest.x - source.x) / Math.abs(dest.x - source.x);
+        int deltaY = (dest.y - source.y) / Math.abs(dest.y - source.y);
+        for (int index = 0; index < size; index++) {
+            steps[index] = Cell.findBy(source.x + deltaX * index, source.y + deltaY * index);
+        }
+        return steps;
+    }
+
+    public boolean isDiagonal(Cell source, Cell dest) {
+        if (!source.equals(dest) && Math.abs(source.x - dest.x) - Math.abs(source.y - dest.y) == 0) return true;
+        return false;
     }
 
     @Override
     public Figure copy(Cell dest) {
-        return new BishopWhite(dest);
+        return new ru.job4j.chess.firuges.white.BishopWhite(dest);
     }
 }

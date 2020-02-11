@@ -28,13 +28,10 @@ public class Logic {
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
             for (int i = 1; i < steps.length; i++) {
-                for (int j = 0; j < figures.length; j++) {
-                    if (figures[j].position().equals(steps[i])) {
-                        cross = true;
-                        break;
-                    }
+                if (findBy(steps[i]) != -1) {
+                    cross = true;
+                    break;
                 }
-                if (!cross) break;
             }
             if (steps.length > 0 && steps[steps.length - 1].equals(dest) && !cross) {
                 rst = true;
